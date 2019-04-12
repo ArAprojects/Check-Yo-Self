@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Open Sans';
+  margin:0;
+  padding:0;
+  border: 1px solid black;
+}
+body {
+
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1f1f3D;
+}
+
+h1{
+  color:white;
+}
+
+h1 span {
+  color: orange;
+}
+
+.button-and-search {
+}
+
+main {
+  display: flex;
+}
+
+.left {
+  flex: 1;
+}
+
+.right {
+  flex: 2;
+}
