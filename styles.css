@@ -14,28 +14,63 @@ nav {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #1f1f3D;
+  background-color: #0B0F43;
 }
 
 h1{
-  color:white;
+  color: white;
+  margin: 10px;
 }
 
 h1 span {
-  color: orange;
+  color: #FFC200;
 }
 
 .button-and-search {
+}
+
+.search {
+  height: 40px;
+}
+
+.left-bottom,
+.task-buttons,
+.left-top {
+  width: 100%;
 }
 
 main {
   display: flex;
 }
 
-.left {
+.section-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 1;
+  background-color: #48869A;
+  color: white;
+  text-align: left;
 }
 
-.right {
+form,
+.left-bottom {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+h5,
+.section-left input {
+  width: 95%
+}
+
+.section-left button {
+  width: 95%;
+  background-color: #0B0F43;
+  color: white;
+}
+
+.section-right {
   flex: 2;
 }
