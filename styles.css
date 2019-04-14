@@ -39,7 +39,7 @@ h1 span {
 
 .search-icon {
   height: 40px;
-  background-color: #C8D3D9;
+  background-color: #C8D3D9;=
 }
 
 
@@ -58,8 +58,18 @@ main {
   text-align: left;
 }
 
-.section-left input,
+ #new-item-button {
+  height: 40px;
+  width: 40px;
+  margin-bottom: 30px;
+}
+
 .new-item-button {
+    background-color: #0B0F43;
+}
+
+
+.section-left input {
   height: 40px;
   margin-bottom: 30px;
   border: 1px solid black;
@@ -100,10 +110,8 @@ li {
 }
 
 
-}
-
-.new-item-button {
-  background-color: #0B0F43;
+input[type="image"]:disabled{
+  background-color: grey;
 }
 
 h5,
