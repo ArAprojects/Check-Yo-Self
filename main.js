@@ -3,16 +3,23 @@ var leftCheckList = document.querySelector(".checklist")
 var taskTitleInput = document.querySelector('.to-do-title-input')
 var taskBodyInput = document.querySelector('.to-do-item-input')
 var makeTaskListButton = document.querySelector('.make-task-list-button')
-var cardArea = document.querySelector('section-right')
-var clearAllButton = document.querySelector('clear-all-button')
-// -----------Event-listeners--------------//
+var cardArea = document.querySelector('.section-right')
+var listArea = document.querySelector('.section-left')
+var clearAllButton = document.querySelector('.clear-all-button')
+var deleteButton = document.querySelector('.delete-from-sidebar-button')
+// var listItem = document.querySelector('.listItem')
 
+// -----------Event-listeners--------------//
 newItemButton.addEventListener('click', addNewListItem)
 taskBodyInput.addEventListener('keyup', checkTaskBodyInput)
 newItemButton.addEventListener('click', checkTaskBodyInput)
 makeTaskListButton.addEventListener('click', checkTaskTitleInput)
 taskTitleInput.addEventListener('keyup', checkTaskTitleInput)
+newItemButton.addEventListener('click', checkTaskList)
 newItemButton.addEventListener('click', resetInputs)
+leftCheckList.addEventListener('click', deleteListItem)
+clearAllButton.addEventListener('click', clearAll)
+
 
 
 function addNewListItem(e) {
@@ -25,13 +32,30 @@ function addNewListItem(e) {
 function makeCard(e) {
   e.preventDefault()
   cardArea.innerHTML = `
-  <li class="list-item"><img class="delete-from-sidebar-button" src="assets/delete.svg">${taskBodyInput.value}</li>`
+  <article class="card">
+    <div class="card-title">
+    </div>
+    <div class="card-body">
+    ${leftCheckList.innerHTML}
+    </div>
+    <div class="card-footer">
+      <section class="urgent-section" action="index.html" method="post">
+        <img class="urgent-button" src="">
+        <p>Urgent</p>
+      </section>
+    </article>
+ `
   + cardArea.innerHTML;
 }
 
-function resetInputs(){
+// ------------validating--inputs-----------//
+function resetInputs() {
   taskTitleInput.value = ''
   taskBodyInput.value = ''
+}
+
+function clearAll(){
+  leftCheckList.innerHTML = ''
 }
 
 function checkTaskBodyInput() {
@@ -55,5 +79,13 @@ function checkTaskList() {
     clearAllButton.disabled = true;
   } else {
     clearAllButton.disabled = false;
+  }
+}
+
+
+// --------------deleteing-----------//
+  function deleteListItem(e){
+  if (e.target.className === "delete-from-sidebar-button") {
+      e.target.closest(".list-item").remove();
   }
 }
