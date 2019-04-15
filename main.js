@@ -19,6 +19,7 @@ newItemButton.addEventListener('click', checkTaskList)
 newItemButton.addEventListener('click', resetInputs)
 leftCheckList.addEventListener('click', deleteListItem)
 clearAllButton.addEventListener('click', clearAll)
+makeTaskListButton.addEventListener('click', makeCard)
 
 
 
@@ -50,12 +51,12 @@ function makeCard(e) {
 
 // ------------validating--inputs-----------//
 function resetInputs() {
-  taskTitleInput.value = ''
   taskBodyInput.value = ''
 }
 
 function clearAll(){
   leftCheckList.innerHTML = ''
+  taskTitleInput.value = ''
 }
 
 function checkTaskBodyInput() {
