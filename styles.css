@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family: 'Open Sans';
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0B0F43;
+}
+
+h1{
+  color: white;
+  margin: 10px;
+  font-size: 30px;
+}
+
+h1 span {
+  color: #FFC200;
+}
+
+.button-and-search {
+  display: flex;
+  min-width: 30%
+}
+
+.search {
+  height: 40px;
+  margin-right: 5px;
+  width: 100%
+}
+
+.search-icon {
+  height: 40px;
+  background-color: #C8D3D9;
+}
+
+
+main {
+  display: flex;
+}
+
+
+.section-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  background-color: #48869A;
+  color: white;
+  text-align: left;
+}
+
+.section-left input,
+.new-item-button {
+  height: 40px;
+  margin-bottom: 30px;
+  border: 1px solid black;
+}
+
+.section-left form,
+.left-bottom {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.left-bottom,
+.task-buttons,
+.left-top {
+  width: 100%;
+}
+
+.to-do-title {
+  margin-top: 20px;
+}
+
+.checklist {
+  margin: 0px 20px 30px 5px
+}
+
+.delete-from-sidebar-button {
+  margin: 10px;
+  height: 20px;
+}
+
+li {
+    list-style-type: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+}
+
+.new-item-button {
+  background-color: #0B0F43;
+}
+
+h5,
+.section-left input {
+  width: 95%
+}
+
+.section-left button {
+  width: 95%;
+  background-color: #0B0F43;
+  color: white;
+  font-size: 18px;
+  font-style: bold;
+  margin-bottom: 20px;
+  min-height: 40px;
+  border: 1px solid black;
+  padding: 3px;
+}
+
+.task-input-and-plus-button{
+  display: flex;
+  width: 95%;
+}
+
+.left-bottom {
+  border: 1px solid #406779;
+}
+
+.left-bottom {
+  margin-top: 10px;
+  min-height: 400px;
+}
+
+.filter-by-urgency-button {
+  margin-top: 30px;
+}
+
+.section-right {
+  flex: 2;
+  background-color: #F3F6F7
+}
