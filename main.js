@@ -12,15 +12,20 @@ var deleteButton = document.querySelector('.delete-from-sidebar-button')
 // -----------Event-listeners--------------//
 newItemButton.addEventListener('click', addNewListItem)
 taskBodyInput.addEventListener('keyup', checkTaskBodyInput)
-newItemButton.addEventListener('click', checkTaskBodyInput)
-makeTaskListButton.addEventListener('click', checkTaskTitleInput)
+newItemButton.addEventListener('click', checkTaskTitleInput)
 taskTitleInput.addEventListener('keyup', checkTaskTitleInput)
 newItemButton.addEventListener('click', checkTaskList)
 newItemButton.addEventListener('click', resetInputs)
 leftCheckList.addEventListener('click', deleteListItem)
 clearAllButton.addEventListener('click', clearAll)
 makeTaskListButton.addEventListener('click', makeCard)
+leftCheckList.addEventListener('click', checkTaskTitleInput)
+clearAllButton.addEventListener('click', checkTaskList)
+clearAllButton.addEventListener('click', checkTaskTitleInput)
+clearAllButton.addEventListener('click', checkTaskBodyInput)
+newItemButton.addEventListener('click', checkTaskBodyInput)
 
+// clearAllButton.addEventListener('click', )
 
 
 function addNewListItem(e) {
@@ -68,7 +73,7 @@ function clearAll(){
 }
 
 function checkTaskBodyInput() {
-  if (taskBodyInput.value === "") {
+  if (taskBodyInput.value === '') {
     newItemButton.disabled = true;
   } else {
     newItemButton.disabled = false;
@@ -76,25 +81,27 @@ function checkTaskBodyInput() {
 }
 
 function checkTaskTitleInput() {
-  if (taskTitleInput.value === "") {
+  if (leftCheckList.innerText === '' || taskTitleInput.value === '') {
     makeTaskListButton.disabled = true;
+    console.log(leftCheckList.innerHTML + "hi")
   } else {
+    console.log(leftCheckList.innerHTML.length + "no")
     makeTaskListButton.disabled = false;
   }
 }
 
 function checkTaskList() {
-  if (leftCheckList.innerHTML === "") {
-    clearAllButton.disabled = true;
-  } else {
+  if (leftCheckList.innerText != '' || taskBodyInput.value != '' || taskTitleInput.value != '') {
     clearAllButton.disabled = false;
+  } else {
+    clearAllButton.disabled = true;
   }
 }
-
 
 // --------------deleteing-----------//
   function deleteListItem(e){
   if (e.target.className === "delete-from-sidebar-button") {
       e.target.closest(".list-item").remove();
+
   }
 }
