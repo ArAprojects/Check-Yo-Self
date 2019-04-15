@@ -35,11 +35,14 @@ function makeCard(e) {
   cardArea.innerHTML = `
   <article class="card">
     <div class="card-title">
+    <h2>${taskTitleInput.value}</h2>
+    <hr>
     </div>
     <div class="card-body">
-    ${leftCheckList.innerHTML}
+    <p>${leftCheckList.innerHTML}</p>
     </div>
     <div class="card-footer">
+      <hr>
       <section class="urgent-section" action="index.html" method="post">
         <img class="urgent-button" src="">
         <p>Urgent</p>

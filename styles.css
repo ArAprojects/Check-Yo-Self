@@ -39,7 +39,8 @@ h1 span {
 
 .search-icon {
   height: 40px;
-  background-color: #C8D3D9;=
+  background-color: #C8D3D9;
+  padding: 5px;
 }
 
 
@@ -66,6 +67,7 @@ main {
 
 .new-item-button {
   background-color: #0B0F43;
+  padding: 5px;
 }
 
 .section-left input {
@@ -141,6 +143,7 @@ h5,
 
 .left-bottom {
   border: 1px solid #406779;
+  border-bottom: none;
 }
 
 .left-bottom {
@@ -155,16 +158,26 @@ h5,
 .section-right {
   flex: 2;
   background-color: #F3F6F7;
-  column-width: 13em;
-  padding: 15px;
-  padding-left: 10px;
-
+  column-width: 20em;
+  padding: 20px;
+  padding-left: 15px;
 }
 
 .card {
   border: 1px solid black;
   display: inline-block;
-  margin:  0.25rem;
-  padding:  1rem;
+  padding:  5px;
   width:  100%;
+  margin: .25rem;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin: 5px;
+}
+
+.card-title {
+  font-weight: bold;
+  margin-bottom: 10px;
 }
