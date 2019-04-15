@@ -10,6 +10,7 @@ var deleteButton = document.querySelector('.delete-from-sidebar-button')
 var deleteSection = document.querySelector('.delete-section')
 var urgentSection = document.querySelector('.urgent-section')
 var listItem = document.querySelector('.list-item')
+var toDoListArray = []
 
 // -----------Event-listeners--------------//
 newItemButton.addEventListener('click', addNewListItem)
@@ -18,14 +19,10 @@ taskTitleInput.addEventListener('keyup', checkTaskTitleInput)
 newItemButton.addEventListener('click', resetInputs)
 clearAllButton.addEventListener('click', clearAll)
 makeTaskListButton.addEventListener('click', makeCard)
-listArea.addEventListener('click', deleteListItem)
-listArea.addEventListener('click', checkTaskList)
-listArea.addEventListener('click', checkTaskBodyInput)
-listArea.addEventListener('click', checkTaskTitleInput)
+listArea.addEventListener('click', listAreaClicks)
 cardArea.addEventListener('click', deleteCard)
 makeTaskListButton.addEventListener('click', svgSwap)
 // cardArea.addEventListener('click', makeUrgent)
-
 
 
 function addNewListItem(e) {
@@ -44,7 +41,7 @@ function makeCard(e) {
     <hr>
     </div>
     <div class="card-body">
-    <p>${leftCheckList.innerHTML}</p>
+    ${leftCheckList.innerText}
     </div>
     <hr>
     <div class="card-footer">
@@ -66,6 +63,15 @@ function makeCard(e) {
 
 
 // ------------validating--inputs-----------//
+
+function listAreaClicks(e){
+  e.preventDefault()
+  deleteListItem(e);
+  checkTaskList();
+  checkTaskBodyInput();
+  checkTaskTitleInput();
+}
+
 function resetInputs() {
   taskBodyInput.value = ''
 }
@@ -114,12 +120,21 @@ function deleteCard(e){
 }
 
 //-----------------------------------------------------
-
-function svgSwap() {
-var deleteButton = document.querySelectorAll('.delete-from-sidebar-button')
-for (var i = 0; i < deleteButton.length; i++){
-  if (deleteButton[i].getAttribute('src') === 'assets/delete.svg') {
-      deleteButton[i].setAttribute('src', 'assets/checkbox.svg')
-    }
-  }
+function saveNewObject() {
+	var newTask = new Todolist(Date.now(), taskTitleInput.value, taskBodyInput.value);
+	toDoListArray.push(newIdea);
+	newIdea.saveToStorage(ideaArray);
+	addCard(newIdea);
 }
+
+
+
+
+// function svgSwap() {
+// var deleteButton = document.querySelectorAll('.delete-from-sidebar-button')
+// for (var i = 0; i < deleteButton.length; i++){
+//   if (deleteButton[i].getAttribute('src') === 'assets/delete.svg') {
+//       deleteButton[i].setAttribute('src', 'assets/checkbox.svg')
+//     }
+//   }
+// }
