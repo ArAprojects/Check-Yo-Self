@@ -7,19 +7,23 @@ var cardArea = document.querySelector('.section-right')
 var listArea = document.querySelector('.section-left')
 var clearAllButton = document.querySelector('.clear-all-button')
 var deleteButton = document.querySelector('.delete-from-sidebar-button')
+var deleteSection = document.querySelector('.delete-section')
+var urgentSection = document.querySelector('.urgent-section')
 // var listItem = document.querySelector('.listItem')
 
 // -----------Event-listeners--------------//
 newItemButton.addEventListener('click', addNewListItem)
 taskBodyInput.addEventListener('keyup', checkTaskBodyInput)
-newItemButton.addEventListener('click', checkTaskBodyInput)
-makeTaskListButton.addEventListener('click', checkTaskTitleInput)
 taskTitleInput.addEventListener('keyup', checkTaskTitleInput)
-newItemButton.addEventListener('click', checkTaskList)
 newItemButton.addEventListener('click', resetInputs)
-leftCheckList.addEventListener('click', deleteListItem)
 clearAllButton.addEventListener('click', clearAll)
 makeTaskListButton.addEventListener('click', makeCard)
+listArea.addEventListener('click', deleteListItem)
+listArea.addEventListener('click', checkTaskList)
+listArea.addEventListener('click', checkTaskBodyInput)
+listArea.addEventListener('click', checkTaskTitleInput)
+cardArea.addEventListener('click', deleteCard)
+// cardArea.addEventListener('click', makeUrgent)
 
 
 
@@ -48,7 +52,7 @@ function makeCard(e) {
         <p>Urgent</p>
       </section>
       <section class="delete-section" action="index.html" method="post">
-        <img class="delete-button" src="assets/urgent.svg">
+        <img class="delete-button" src="assets/delete.svg">
         <p>Delete</p>
       </section>
     </article>
@@ -68,7 +72,7 @@ function clearAll(){
 }
 
 function checkTaskBodyInput() {
-  if (taskBodyInput.value === "") {
+  if (taskBodyInput.value === '') {
     newItemButton.disabled = true;
   } else {
     newItemButton.disabled = false;
@@ -76,25 +80,32 @@ function checkTaskBodyInput() {
 }
 
 function checkTaskTitleInput() {
-  if (taskTitleInput.value === "") {
+  if (leftCheckList.innerText === '' || taskTitleInput.value === '') {
     makeTaskListButton.disabled = true;
+    console.log(leftCheckList.innerHTML + "hi")
   } else {
+    console.log(leftCheckList.innerHTML.length + "no")
     makeTaskListButton.disabled = false;
   }
 }
 
 function checkTaskList() {
-  if (leftCheckList.innerHTML === "") {
-    clearAllButton.disabled = true;
-  } else {
+  if (leftCheckList.innerText != '' || taskBodyInput.value != '' || taskTitleInput.value != '') {
     clearAllButton.disabled = false;
+  } else {
+    clearAllButton.disabled = true;
   }
 }
-
 
 // --------------deleteing-----------//
   function deleteListItem(e){
   if (e.target.className === "delete-from-sidebar-button") {
       e.target.closest(".list-item").remove();
+  }
+}
+
+function deleteCard(e){
+  if (e.target.className === "delete-button") {
+    e.target.closest(".card").remove()
   }
 }

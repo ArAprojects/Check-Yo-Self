@@ -99,12 +99,12 @@ main {
 
 .delete-from-sidebar-button {
   margin: 10px;
-  height: 20px;
+  height: 25px;
 }
 
 li {
   list-style-type: none;
-  font-size: 18px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -164,7 +164,7 @@ h5,
 }
 
 .section-right img {
-  height: 20px;
+  height: 25px;
 }
 
 .card {
