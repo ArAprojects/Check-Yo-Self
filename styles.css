@@ -65,9 +65,8 @@ main {
 }
 
 .new-item-button {
-    background-color: #0B0F43;
+  background-color: #0B0F43;
 }
-
 
 .section-left input {
   height: 40px;
@@ -102,11 +101,11 @@ main {
 }
 
 li {
-    list-style-type: none;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+  list-style-type: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 
@@ -129,6 +128,10 @@ h5,
   min-height: 40px;
   border: 1px solid black;
   padding: 3px;
+}
+
+.section-left button:disabled{
+  background-color: grey;
 }
 
 .task-input-and-plus-button{
