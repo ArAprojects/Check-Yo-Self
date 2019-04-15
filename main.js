@@ -9,7 +9,7 @@ var clearAllButton = document.querySelector('.clear-all-button')
 var deleteButton = document.querySelector('.delete-from-sidebar-button')
 var deleteSection = document.querySelector('.delete-section')
 var urgentSection = document.querySelector('.urgent-section')
-// var listItem = document.querySelector('.listItem')
+var listItem = document.querySelector('.list-item')
 
 // -----------Event-listeners--------------//
 newItemButton.addEventListener('click', addNewListItem)
@@ -23,6 +23,7 @@ listArea.addEventListener('click', checkTaskList)
 listArea.addEventListener('click', checkTaskBodyInput)
 listArea.addEventListener('click', checkTaskTitleInput)
 cardArea.addEventListener('click', deleteCard)
+makeTaskListButton.addEventListener('click', svgSwap)
 // cardArea.addEventListener('click', makeUrgent)
 
 
@@ -58,7 +59,11 @@ function makeCard(e) {
     </article>
  `
   + cardArea.innerHTML;
+    leftCheckList.innerHTML = '';
+    taskTitleInput.value = '';
 }
+
+
 
 // ------------validating--inputs-----------//
 function resetInputs() {
@@ -82,9 +87,7 @@ function checkTaskBodyInput() {
 function checkTaskTitleInput() {
   if (leftCheckList.innerText === '' || taskTitleInput.value === '') {
     makeTaskListButton.disabled = true;
-    console.log(leftCheckList.innerHTML + "hi")
   } else {
-    console.log(leftCheckList.innerHTML.length + "no")
     makeTaskListButton.disabled = false;
   }
 }
@@ -107,5 +110,16 @@ function checkTaskList() {
 function deleteCard(e){
   if (e.target.className === "delete-button") {
     e.target.closest(".card").remove()
+  }
+}
+
+//-----------------------------------------------------
+
+function svgSwap() {
+var deleteButton = document.querySelectorAll('.delete-from-sidebar-button')
+for (var i = 0; i < deleteButton.length; i++){
+  if (deleteButton[i].getAttribute('src') === 'assets/delete.svg') {
+      deleteButton[i].setAttribute('src', 'assets/checkbox.svg')
+    }
   }
 }
