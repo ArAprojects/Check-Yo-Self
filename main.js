@@ -57,6 +57,7 @@ function resetInputs() {
 function clearAll(){
   leftCheckList.innerHTML = ''
   taskTitleInput.value = ''
+  taskBodyInput.value = ''
 }
 
 function checkTaskBodyInput() {

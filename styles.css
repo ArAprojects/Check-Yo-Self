@@ -154,5 +154,17 @@ h5,
 
 .section-right {
   flex: 2;
-  background-color: #F3F6F7
+  background-color: #F3F6F7;
+  column-width: 13em;
+  padding: 15px;
+  padding-left: 10px;
+
+}
+
+.card {
+  border: 1px solid black;
+  display: inline-block;
+  margin:  0.25rem;
+  padding:  1rem;
+  width:  100%;
 }
