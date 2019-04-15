@@ -41,11 +41,15 @@ function makeCard(e) {
     <div class="card-body">
     <p>${leftCheckList.innerHTML}</p>
     </div>
+    <hr>
     <div class="card-footer">
-      <hr>
       <section class="urgent-section" action="index.html" method="post">
-        <img class="urgent-button" src="">
+        <img class="urgent-button" src="assets/urgent.svg">
         <p>Urgent</p>
+      </section>
+      <section class="delete-section" action="index.html" method="post">
+        <img class="delete-button" src="assets/urgent.svg">
+        <p>Delete</p>
       </section>
     </article>
  `
