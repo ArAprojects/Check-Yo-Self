@@ -18,30 +18,28 @@ taskBodyInput.addEventListener('keyup', checkTaskBodyInput)
 taskTitleInput.addEventListener('keyup', checkTaskTitleInput)
 newItemButton.addEventListener('click', resetInputs)
 clearAllButton.addEventListener('click', clearAll)
-makeTaskListButton.addEventListener('click', makeCard)
+makeTaskListButton.addEventListener('click', makeNewTask)
 listArea.addEventListener('click', listAreaClicks)
 cardArea.addEventListener('click', deleteCard)
-makeTaskListButton.addEventListener('click', svgSwap)
+// makeTaskListButton.addEventListener('click', svgSwap)
 // cardArea.addEventListener('click', makeUrgent)
 
 
-function addNewListItem(e) {
-  e.preventDefault()
+function addNewListItem(id) {
   leftCheckList.innerHTML = `
   <li class="list-item"><img class="delete-from-sidebar-button" src="assets/delete.svg">${taskBodyInput.value}</li>`
   + leftCheckList.innerHTML;
 }
 
-function makeCard(e) {
-  e.preventDefault()
+function makeCard(object) {
   cardArea.innerHTML = `
   <article class="card">
     <div class="card-title">
-    <h2>${taskTitleInput.value}</h2>
+    <h2>${object.title}</h2>
     <hr>
     </div>
     <div class="card-body">
-    ${leftCheckList.innerText}
+    ${object.tasks}
     </div>
     <hr>
     <div class="card-footer">
@@ -120,12 +118,13 @@ function deleteCard(e){
 }
 
 //-----------------------------------------------------
-function saveNewObject() {
-	var newTask = new Todolist(Date.now(), taskTitleInput.value, taskBodyInput.value);
-	toDoListArray.push(newIdea);
-	newIdea.saveToStorage(ideaArray);
-	addCard(newIdea);
+function makeNewTask() {
+	var newTaskList = new Todolist(Date.now(), taskTitleInput.value, leftCheckList.innerHTML);
+  makeCard(newTaskList);
+	toDoListArray.push(newTaskList);
+	newTaskList.saveToLocalStorage();
 }
+
 
 
 

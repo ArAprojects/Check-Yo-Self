@@ -148,7 +148,7 @@ h5,
 
 .left-bottom {
   margin-top: 10px;
-  min-height: 400px;
+  height: 100vh;
 }
 
 .filter-by-urgency-button {
