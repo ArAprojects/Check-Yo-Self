@@ -8,6 +8,7 @@ class Todolist{
 
   saveToLocalStorage(){
     var stringified = JSON.stringify(toDoListArray)
-    localStorage.setItem('toDoListArray', stringified)
+    localStorage.setItem('tasklist', stringified)
   }
+
 }
