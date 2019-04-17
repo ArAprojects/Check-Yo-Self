@@ -9,17 +9,17 @@ body {
 }
 
 nav {
+  align-items: center;
+  background-color: #0B0F43;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  background-color: #0B0F43;
 }
 
 h1{
   color: white;
-  margin: 10px;
   font-size: 30px;
+  margin: 10px;
 }
 
 h1 span {
@@ -38,8 +38,8 @@ h1 span {
 }
 
 .search-icon {
-  height: 40px;
   background-color: #C8D3D9;
+  height: 40px;
   padding: 5px;
 }
 
@@ -48,19 +48,19 @@ main {
 }
 
 .section-left {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  flex: 1;
   background-color: #587A8A;
   color: white;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   text-align: left;
 }
 
  #new-item-button {
   height: 40px;
-  width: 40px;
   margin-bottom: 30px;
+  width: 40px;
 }
 
 .new-item-button {
@@ -69,16 +69,16 @@ main {
 }
 
 .section-left input {
+  border: 1px solid black;
   height: 40px;
   margin-bottom: 30px;
-  border: 1px solid black;
 }
 
 .section-left form,
 .left-bottom {
-  flex-direction: column;
   align-items: center;
   display: flex;
+  flex-direction: column;
 }
 
 .left-bottom,
@@ -92,13 +92,13 @@ main {
 }
 
 .yellow-card {
+  background-color: #FFE89D;
   border: 1px solid black;
   display: inline-block;
-  padding:  5px;
-  width:  100%;
   margin: .25rem;
   margin-bottom: 15px;
-  background-color: #FFE89D;
+  padding:  5px;
+  width:  100%;
 }
 
 .checklist {
@@ -106,15 +106,15 @@ main {
 }
 
 .delete-from-sidebar-button {
-  margin: 10px;
   height: 25px;
+  margin: 10px;
 }
 
 li {
-  list-style-type: none;
-  font-size: 20px;
-  display: flex;
   align-items: center;
+  display: flex;
+  font-size: 20px;
+  list-style-type: none;
   margin-bottom: 10px;
 }
 
@@ -129,15 +129,15 @@ h5,
 }
 
 .section-left button {
-  width: 95%;
   background-color: #0B0F43;
+  border: 1px solid black;
   color: white;
   font-size: 18px;
   font-style: bold;
   margin-bottom: 20px;
   min-height: 40px;
-  border: 1px solid black;
   padding: 3px;
+  width: 95%;
 }
 
 .section-left button:disabled{
@@ -155,8 +155,8 @@ h5,
 }
 
 .left-bottom {
-  margin-top: 10px;
   height: 100vh;
+  margin-top: 10px;
 }
 
 .filter-by-urgency-button {
@@ -164,9 +164,9 @@ h5,
 }
 
 .section-right {
-  flex: 2;
   background-color: #F3F6F7;
   column-width: 20em;
+  flex: 2;
   padding: 20px;
   padding-left: 15px;
 }
@@ -178,10 +178,10 @@ h5,
 .card {
   border: 1px solid black;
   display: inline-block;
-  padding:  5px;
-  width:  100%;
   margin: .25rem;
   margin-bottom: 15px;
+  padding:  5px;
+  width:  100%;
 }
 
 .task-check {
@@ -201,9 +201,9 @@ h2 {
 }
 
 .card-footer {
-  margin: 5px;
   display: flex;
   justify-content: space-between;
+  margin: 5px;
 }
 
 .delete-section,
@@ -227,8 +227,8 @@ h2 {
   }
 
   .button-and-search {
-    width: 80%;
     margin-bottom: 25px;
+    width: 80%;
   }
 
   .left-bottom {
