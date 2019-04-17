@@ -1,4 +1,6 @@
-
+var toDoListArray = JSON.parse(localStorage.getItem('tasklist')) || [];
+var taskArray = [];
+var cardArrayIndx = 0;
 var newItemButton = document.querySelector('.new-item-button')
 var leftCheckList = document.querySelector(".checklist")
 var taskTitleInput = document.querySelector('.to-do-title-input')
@@ -12,9 +14,6 @@ var deleteSection = document.querySelector('.delete-section')
 var urgentSection = document.querySelector('.urgent-section')
 var listItem = document.querySelector('.list-item')
 var unchecked = document.querySelector('.task-check')
-var toDoListArray = JSON.parse(localStorage.getItem('tasklist')) || [];
-var taskArray = [];
-var cardArrayIndx = 0;
 
 // -----------Event-listeners--------------//
 newItemButton.addEventListener('click', addNewListItem)
@@ -28,6 +27,7 @@ newItemButton.addEventListener('click', getTasks)
 newItemButton.addEventListener('click', resetInputs)
 clearAllButton.addEventListener('click', clearAll)
 cardArea.addEventListener('click', toggleCheck)
+cardArea.addEventListener('click', toggleUrgent)
 window.addEventListener('load', reload)
 // makeTaskListButton.addEventListener('click', svgSwap)
 // cardArea.addEventListener('click', makeUrgent)
@@ -109,6 +109,12 @@ function toggleCheck(e){
   e.target.closest(".task-check").setAttribute('src', 'assets/checkbox.svg')
 }
 
+function toggleUrgent(e){
+  e.target.closest(".urgent-button").getAttribute('src') === 'assets/urgent.svg' ?
+  e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent-active.svg') :
+  e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent.svg')
+}
+
 cardArea.addEventListener('mouseover', e => {
   if(e.target.classList.contains('delete-button')) {
   e.target.closest(".delete-button").setAttribute('src', 'assets/delete-active.svg');
@@ -120,6 +126,20 @@ cardArea.addEventListener('mouseout', e => {
   e.target.closest(".delete-button").setAttribute('src', 'assets/delete.svg');
   }
 });
+
+// cardArea.addEventListener('mouseover', e => {
+//   if(e.target.classList.contains('urgent-button')) {
+//   e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent-active.svg');
+//   }
+// });
+//
+// cardArea.addEventListener('mouseout', e => {
+//   if(e.target.classList.contains('urgent-button')) {
+//   e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent.svg');
+//   }
+// });
+
+
 
 
 
@@ -166,17 +186,17 @@ function deleteListItem(e){
   }
 }
 
-function targetCardForDeletion(e) {
-  var card = e.target.closest('.card');
-  var index = findCardIndex(card);
-}
+// function targetCardForDeletion(e) {
+//   var card = e.target.closest('.card');
+//   var index = findCardIndex(card);
+// }
 
-function findCardIndex(card) {
-  var cardId = card.dataset.id;
-  return todoCards.findIndex(function(item) {
-    return item.id == cardId;
-  });
-}
+// function findCardIndex(card) {
+//   var cardId = card.dataset.id;
+//   return todoCards.findIndex(function(item) {
+//     return item.id == cardId;
+//   });
+// }
 
 function deleteCard(e){
   if (e.target.className === "delete-button") {
