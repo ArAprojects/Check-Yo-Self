@@ -43,11 +43,9 @@ h1 span {
   padding: 5px;
 }
 
-
 main {
   display: flex;
 }
-
 
 .section-left {
   display: flex;
@@ -214,3 +212,25 @@ h2 {
   flex-direction: column;
   margin-top: 5px;
 }
+
+
+@media only screen and (max-width: 525px) {
+
+  main {
+    display: block;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .button-and-search {
+    width: 80%;
+    margin-bottom: 25px;
+  }
+
+  .left-bottom {
+    height: auto;
+  }
