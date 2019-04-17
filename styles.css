@@ -54,7 +54,7 @@ main {
   flex-direction: column;
   align-items: center;
   flex: 1;
-  background-color: #48869A;
+  background-color: #587A8A;
   color: white;
   text-align: left;
 }
@@ -91,6 +91,16 @@ main {
 
 .to-do-title {
   margin-top: 20px;
+}
+
+.yellow-card {
+  border: 1px solid black;
+  display: inline-block;
+  padding:  5px;
+  width:  100%;
+  margin: .25rem;
+  margin-bottom: 15px;
+  background-color: #FFE89D;
 }
 
 .checklist {

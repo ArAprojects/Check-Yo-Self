@@ -26,11 +26,10 @@ newItemButton.addEventListener('click', makeNewTaskObject)
 newItemButton.addEventListener('click', getTasks)
 newItemButton.addEventListener('click', resetInputs)
 clearAllButton.addEventListener('click', clearAll)
+cardArea.addEventListener('click', toggles)
 cardArea.addEventListener('click', toggleCheck)
-cardArea.addEventListener('click', toggleUrgent)
 window.addEventListener('load', reload)
-// makeTaskListButton.addEventListener('click', svgSwap)
-// cardArea.addEventListener('click', makeUrgent)
+
 
 function reload() {
   if(localStorage.getItem('tasklist')) {
@@ -63,8 +62,6 @@ function addNewListItem() {
 }
 
 function makeCard(object) {
-  console.log('object here', object)
-  console.log('object content', object.tasks)
   cardArea.innerHTML = `
   <article class="card" data-id="${object.id}">
     <div class="card-title">
@@ -103,6 +100,11 @@ function listAreaClicks(e){
   checkTaskTitleInput();
 }
 
+function toggles(e){
+  toggleUrgent(e)
+  toggleColor(e)
+}
+
 function toggleCheck(e){
   e.target.closest(".task-check").getAttribute('src') === 'assets/checkbox.svg' ?
   e.target.closest(".task-check").setAttribute('src', 'assets/checkbox-active.svg') :
@@ -113,6 +115,12 @@ function toggleUrgent(e){
   e.target.closest(".urgent-button").getAttribute('src') === 'assets/urgent.svg' ?
   e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent-active.svg') :
   e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent.svg')
+}
+
+function toggleColor(e){
+  e.target.closest(".urgent-button").getAttribute('src') === 'assets/urgent-active.svg' ?
+  e.target.closest(".card").setAttribute('class', 'yellow-card') :
+  e.target.closest(".yellow-card").setAttribute('class', 'card')
 }
 
 cardArea.addEventListener('mouseover', e => {
@@ -138,11 +146,6 @@ cardArea.addEventListener('mouseout', e => {
 //   e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent.svg');
 //   }
 // });
-
-
-
-
-
 
 function resetInputs() {
   taskBodyInput.value = ''
@@ -204,9 +207,7 @@ function deleteCard(e){
   }
 }
 
-
 function makeNewTask() {
-    console.log('wow so cool')
 	var newTaskList = new Todolist(Date.now(), taskTitleInput.value, taskArray);
   makeCard(newTaskList);
 	toDoListArray.push(newTaskList);
