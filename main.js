@@ -95,8 +95,6 @@ function makeCard(object) {
 
 // ------------validating--inputs-----------//
 
-
-
 function listAreaClicks(e){
   e.preventDefault()
   deleteListItem(e);
@@ -110,6 +108,21 @@ function toggleCheck(e){
   e.target.closest(".task-check").setAttribute('src', 'assets/checkbox-active.svg') :
   e.target.closest(".task-check").setAttribute('src', 'assets/checkbox.svg')
 }
+
+cardArea.addEventListener('mouseover', e => {
+  if(e.target.classList.contains('delete-button')) {
+  e.target.closest(".delete-button").setAttribute('src', 'assets/delete-active.svg');
+  }
+});
+
+cardArea.addEventListener('mouseout', e => {
+  if(e.target.classList.contains('delete-button')) {
+  e.target.closest(".delete-button").setAttribute('src', 'assets/delete.svg');
+  }
+});
+
+
+
 
 function resetInputs() {
   taskBodyInput.value = ''
@@ -147,7 +160,7 @@ function checkTaskList() {
 
 
 // --------------deleteing-----------//
-  function deleteListItem(e){
+function deleteListItem(e){
   if (e.target.className === "delete-from-sidebar-button") {
       e.target.closest(".list-item").remove();
   }
