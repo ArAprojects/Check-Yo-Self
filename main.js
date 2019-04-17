@@ -87,7 +87,6 @@ function makeCard(object) {
     taskTitleInput.value = '';
 }
 
-
 function listAreaClicks(e){
   e.preventDefault()
   deleteListItem(e);
@@ -170,17 +169,6 @@ function deleteListItem(e){
       e.target.closest(".list-item").remove();
   }
 }
-// function targetCardForDeletion(e) {
-//   var card = e.target.closest('.card');
-//   var index = findCardIndex(card);
-// }
-
-// function findCardIndex(card) {
-//   var cardId = card.dataset.id;
-//   return todoCards.findIndex(function(item) {
-//     return item.id == cardId;
-//   });
-// }
 
 function deleteCard(e){
   if (e.target.className === "delete-button") {
