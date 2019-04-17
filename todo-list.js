@@ -15,4 +15,8 @@ class Todolist{
     toDoListArray.splice(index, 1);
     this.saveToLocalStorage();
   }
+  urgent(){
+    this.urgent = !this.urgent
+    this.saveToLocalStorage()
+  }
 }
