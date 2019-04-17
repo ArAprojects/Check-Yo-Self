@@ -15,7 +15,7 @@ var urgentSection = document.querySelector('.urgent-section')
 var listItem = document.querySelector('.list-item')
 var unchecked = document.querySelector('.task-check')
 
-// -----------Event-listeners--------------//
+
 newItemButton.addEventListener('click', addNewListItem)
 taskBodyInput.addEventListener('keyup', checkTaskBodyInput)
 taskTitleInput.addEventListener('keyup', checkTaskTitleInput)
@@ -54,7 +54,6 @@ function getTasks(task) {
   }
 }
 
-
 function addNewListItem() {
   leftCheckList.innerHTML = `
   <li class="list-item"><img class="delete-from-sidebar-button" src="assets/delete.svg">${taskBodyInput.value}</li>`
@@ -75,11 +74,11 @@ function makeCard(object) {
     <div class="card-footer">
       <section class="urgent-section" action="index.html" method="post">
         <img class="urgent-button" src="assets/urgent.svg">
-        <p>Urgent</p>
+        <p>URGENT</p>
       </section>
       <section class="delete-section" action="index.html" method="post">
         <img class="delete-button" src="assets/delete.svg">
-        <p>Delete</p>
+        <p>DELETE</p>
       </section>
     </article>
  `
@@ -88,9 +87,6 @@ function makeCard(object) {
     taskTitleInput.value = '';
 }
 
-
-
-// ------------validating--inputs-----------//
 
 function listAreaClicks(e){
   e.preventDefault()
@@ -135,18 +131,6 @@ cardArea.addEventListener('mouseout', e => {
   }
 });
 
-// cardArea.addEventListener('mouseover', e => {
-//   if(e.target.classList.contains('urgent-button')) {
-//   e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent-active.svg');
-//   }
-// });
-//
-// cardArea.addEventListener('mouseout', e => {
-//   if(e.target.classList.contains('urgent-button')) {
-//   e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent.svg');
-//   }
-// });
-
 function resetInputs() {
   taskBodyInput.value = ''
 }
@@ -181,14 +165,11 @@ function checkTaskList() {
   }
 }
 
-
-// --------------deleteing-----------//
 function deleteListItem(e){
   if (e.target.className === "delete-from-sidebar-button") {
       e.target.closest(".list-item").remove();
   }
 }
-
 // function targetCardForDeletion(e) {
 //   var card = e.target.closest('.card');
 //   var index = findCardIndex(card);
