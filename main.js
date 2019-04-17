@@ -1,3 +1,4 @@
+
 var newItemButton = document.querySelector('.new-item-button')
 var leftCheckList = document.querySelector(".checklist")
 var taskTitleInput = document.querySelector('.to-do-title-input')
@@ -11,7 +12,8 @@ var deleteSection = document.querySelector('.delete-section')
 var urgentSection = document.querySelector('.urgent-section')
 var listItem = document.querySelector('.list-item')
 var toDoListArray = JSON.parse(localStorage.getItem('tasklist')) || [];
-var taskArray = []
+var taskArray = [];
+var cardArrayIndx = 0;
 
 // -----------Event-listeners--------------//
 newItemButton.addEventListener('click', addNewListItem)
@@ -21,36 +23,43 @@ makeTaskListButton.addEventListener('click', makeNewTask)
 listArea.addEventListener('click', listAreaClicks)
 cardArea.addEventListener('click', deleteCard)
 newItemButton.addEventListener('click', makeNewTaskObject)
-makeTaskListButton.addEventListener('click', clearArray)
+// makeTaskListButton.addEventListener('click', clearArray)
 newItemButton.addEventListener('click', getTasks)
 newItemButton.addEventListener('click', resetInputs)
 clearAllButton.addEventListener('click', clearAll)
+window.addEventListener('load', reload)
 // makeTaskListButton.addEventListener('click', svgSwap)
 // cardArea.addEventListener('click', makeUrgent)
 
-
-
-function getTasks(storage) {
-  console.log(taskArray)
-  if(taskArray.length > 0) {
-    console.log('we in it')
-  var toDoString = '';
-  console.log('here', taskArray)
-  console.log(storage)
-  for (var i = 0; i < storage.length; i++) {
-    console.log(storage[i])
-    toDoString += `
-      <li class="list-item" data-id=${storage[i].id} id=${storage[i].id}>
-        <input type='image' class='card--check--icon' src='assets/checkbox.svg' alt='checkbox' data-id=${storage[i].id} id ='index [i]'/>
-        <p class='typed-to-do' id=${storage[i].id}>${storage[i].content}</p>
-      </li>`
+function reload() {
+  if(localStorage.getItem('tasklist')) {
+    var getCardArray = localStorage.getItem('tasklist');
+    // var currentCardsInfo = JSON.parse(toDoListArray);
+    toDoListArray.forEach(function(el) {
+      makeCard(el);
+    // var newTaskList = new Todolist(Date.now(), taskTitleInput.value, taskArray);
+    // toDoListArray[cardArrayIndx] = newTaskList;
+    // cardArrayIndx++;
+    });
   }
-  return toDoString;
 }
+
+function getTasks(task) {
+  if(task.length > 0) {
+    var toDoString = '';
+    for (var i = 0; i < task.length; i++) {
+      toDoString += `
+        <li class="list-item" data-id=${task[i].id} id=${task[i].id}>
+          <input type='image' class='task-check' src='assets/checkbox.svg' alt='checkbox' data-id=${task[i].id} id ='index [i]'/>
+          <p class='task-text' id=${task[i].id}>${task[i].content}</p>
+        </li>`
+    }
+    return toDoString;
+  }
 }
 
 
-function addNewListItem(id) {
+function addNewListItem() {
   leftCheckList.innerHTML = `
   <li class="list-item"><img class="delete-from-sidebar-button" src="assets/delete.svg">${taskBodyInput.value}</li>`
   + leftCheckList.innerHTML;
@@ -156,12 +165,12 @@ function makeNewTask() {
   makeCard(newTaskList);
 	toDoListArray.push(newTaskList);
 	newTaskList.saveToLocalStorage();
+  taskArray = [];
 }
 
 function makeNewTaskObject() {
   var listItem = document.querySelector('.list-item')
   var taskObject = { id: Date.now(), content: `${taskBodyInput.value}`, checked: false}
-  console.log(taskObject)
   taskArray.push(taskObject)
 
 }
