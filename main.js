@@ -1,4 +1,6 @@
-
+var toDoListArray = JSON.parse(localStorage.getItem('tasklist')) || [];
+var taskArray = [];
+var cardArrayIndx = 0;
 var newItemButton = document.querySelector('.new-item-button')
 var leftCheckList = document.querySelector(".checklist")
 var taskTitleInput = document.querySelector('.to-do-title-input')
@@ -11,9 +13,7 @@ var deleteButton = document.querySelector('.delete-from-sidebar-button')
 var deleteSection = document.querySelector('.delete-section')
 var urgentSection = document.querySelector('.urgent-section')
 var listItem = document.querySelector('.list-item')
-var toDoListArray = JSON.parse(localStorage.getItem('tasklist')) || [];
-var taskArray = [];
-var cardArrayIndx = 0;
+var unchecked = document.querySelector('.task-check')
 
 // -----------Event-listeners--------------//
 newItemButton.addEventListener('click', addNewListItem)
@@ -23,23 +23,19 @@ makeTaskListButton.addEventListener('click', makeNewTask)
 listArea.addEventListener('click', listAreaClicks)
 cardArea.addEventListener('click', deleteCard)
 newItemButton.addEventListener('click', makeNewTaskObject)
-// makeTaskListButton.addEventListener('click', clearArray)
 newItemButton.addEventListener('click', getTasks)
 newItemButton.addEventListener('click', resetInputs)
 clearAllButton.addEventListener('click', clearAll)
+cardArea.addEventListener('click', toggles)
+cardArea.addEventListener('click', toggleCheck)
 window.addEventListener('load', reload)
-// makeTaskListButton.addEventListener('click', svgSwap)
-// cardArea.addEventListener('click', makeUrgent)
+
 
 function reload() {
   if(localStorage.getItem('tasklist')) {
     var getCardArray = localStorage.getItem('tasklist');
-    // var currentCardsInfo = JSON.parse(toDoListArray);
     toDoListArray.forEach(function(el) {
-      makeCard(el);
-    // var newTaskList = new Todolist(Date.now(), taskTitleInput.value, taskArray);
-    // toDoListArray[cardArrayIndx] = newTaskList;
-    // cardArrayIndx++;
+    makeCard(el);
     });
   }
 }
@@ -66,10 +62,8 @@ function addNewListItem() {
 }
 
 function makeCard(object) {
-  console.log('object here', object)
-  console.log('object content', object.tasks)
   cardArea.innerHTML = `
-  <article class="card">
+  <article class="card" data-id="${object.id}">
     <div class="card-title">
     <h2>${object.title}</h2>
     <hr>
@@ -106,6 +100,53 @@ function listAreaClicks(e){
   checkTaskTitleInput();
 }
 
+function toggles(e){
+  toggleUrgent(e)
+  toggleColor(e)
+}
+
+function toggleCheck(e){
+  e.target.closest(".task-check").getAttribute('src') === 'assets/checkbox.svg' ?
+  e.target.closest(".task-check").setAttribute('src', 'assets/checkbox-active.svg') :
+  e.target.closest(".task-check").setAttribute('src', 'assets/checkbox.svg')
+}
+
+function toggleUrgent(e){
+  e.target.closest(".urgent-button").getAttribute('src') === 'assets/urgent.svg' ?
+  e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent-active.svg') :
+  e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent.svg')
+}
+
+function toggleColor(e){
+  e.target.closest(".urgent-button").getAttribute('src') === 'assets/urgent-active.svg' ?
+  e.target.closest(".card").setAttribute('class', 'yellow-card') :
+  e.target.closest(".yellow-card").setAttribute('class', 'card')
+}
+
+cardArea.addEventListener('mouseover', e => {
+  if(e.target.classList.contains('delete-button')) {
+  e.target.closest(".delete-button").setAttribute('src', 'assets/delete-active.svg');
+  }
+});
+
+cardArea.addEventListener('mouseout', e => {
+  if(e.target.classList.contains('delete-button')) {
+  e.target.closest(".delete-button").setAttribute('src', 'assets/delete.svg');
+  }
+});
+
+// cardArea.addEventListener('mouseover', e => {
+//   if(e.target.classList.contains('urgent-button')) {
+//   e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent-active.svg');
+//   }
+// });
+//
+// cardArea.addEventListener('mouseout', e => {
+//   if(e.target.classList.contains('urgent-button')) {
+//   e.target.closest(".urgent-button").setAttribute('src', 'assets/urgent.svg');
+//   }
+// });
+
 function resetInputs() {
   taskBodyInput.value = ''
 }
@@ -140,16 +181,25 @@ function checkTaskList() {
   }
 }
 
-function clearArray(){
-  taskArray = []
-}
 
 // --------------deleteing-----------//
-  function deleteListItem(e){
+function deleteListItem(e){
   if (e.target.className === "delete-from-sidebar-button") {
       e.target.closest(".list-item").remove();
   }
 }
+
+// function targetCardForDeletion(e) {
+//   var card = e.target.closest('.card');
+//   var index = findCardIndex(card);
+// }
+
+// function findCardIndex(card) {
+//   var cardId = card.dataset.id;
+//   return todoCards.findIndex(function(item) {
+//     return item.id == cardId;
+//   });
+// }
 
 function deleteCard(e){
   if (e.target.className === "delete-button") {
@@ -157,10 +207,7 @@ function deleteCard(e){
   }
 }
 
-
-//-----------------------------------------------------
 function makeNewTask() {
-    console.log('wow so cool')
 	var newTaskList = new Todolist(Date.now(), taskTitleInput.value, taskArray);
   makeCard(newTaskList);
 	toDoListArray.push(newTaskList);
@@ -172,15 +219,4 @@ function makeNewTaskObject() {
   var listItem = document.querySelector('.list-item')
   var taskObject = { id: Date.now(), content: `${taskBodyInput.value}`, checked: false}
   taskArray.push(taskObject)
-
 }
-
-
-// function svgSwap() {
-// var deleteButton = document.querySelectorAll('.delete-from-sidebar-button')
-// for (var i = 0; i < deleteButton.length; i++){
-//   if (deleteButton[i].getAttribute('src') === 'assets/delete.svg') {
-//       deleteButton[i].setAttribute('src', 'assets/checkbox.svg')
-//     }
-//   }
-// }
