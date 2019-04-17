@@ -11,4 +11,8 @@ class Todolist{
     localStorage.setItem('tasklist', stringified)
   }
 
+  deleteFromLocalStorage(index){
+    toDoListArray.splice(index, 1);
+    this.saveToLocalStorage();
+  }
 }

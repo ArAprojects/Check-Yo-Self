@@ -11,6 +11,7 @@ var deleteButton = document.querySelector('.delete-from-sidebar-button')
 var deleteSection = document.querySelector('.delete-section')
 var urgentSection = document.querySelector('.urgent-section')
 var listItem = document.querySelector('.list-item')
+var unchecked = document.querySelector('.task-check')
 var toDoListArray = JSON.parse(localStorage.getItem('tasklist')) || [];
 var taskArray = [];
 var cardArrayIndx = 0;
@@ -23,10 +24,10 @@ makeTaskListButton.addEventListener('click', makeNewTask)
 listArea.addEventListener('click', listAreaClicks)
 cardArea.addEventListener('click', deleteCard)
 newItemButton.addEventListener('click', makeNewTaskObject)
-// makeTaskListButton.addEventListener('click', clearArray)
 newItemButton.addEventListener('click', getTasks)
 newItemButton.addEventListener('click', resetInputs)
 clearAllButton.addEventListener('click', clearAll)
+cardArea.addEventListener('click', toggleCheck)
 window.addEventListener('load', reload)
 // makeTaskListButton.addEventListener('click', svgSwap)
 // cardArea.addEventListener('click', makeUrgent)
@@ -34,12 +35,8 @@ window.addEventListener('load', reload)
 function reload() {
   if(localStorage.getItem('tasklist')) {
     var getCardArray = localStorage.getItem('tasklist');
-    // var currentCardsInfo = JSON.parse(toDoListArray);
     toDoListArray.forEach(function(el) {
-      makeCard(el);
-    // var newTaskList = new Todolist(Date.now(), taskTitleInput.value, taskArray);
-    // toDoListArray[cardArrayIndx] = newTaskList;
-    // cardArrayIndx++;
+    makeCard(el);
     });
   }
 }
@@ -69,7 +66,7 @@ function makeCard(object) {
   console.log('object here', object)
   console.log('object content', object.tasks)
   cardArea.innerHTML = `
-  <article class="card">
+  <article class="card" data-id="${object.id}">
     <div class="card-title">
     <h2>${object.title}</h2>
     <hr>
@@ -98,12 +95,20 @@ function makeCard(object) {
 
 // ------------validating--inputs-----------//
 
+
+
 function listAreaClicks(e){
   e.preventDefault()
   deleteListItem(e);
   checkTaskList();
   checkTaskBodyInput();
   checkTaskTitleInput();
+}
+
+function toggleCheck(e){
+  e.target.closest(".task-check").getAttribute('src') === 'assets/checkbox.svg' ?
+  e.target.closest(".task-check").setAttribute('src', 'assets/checkbox-active.svg') :
+  e.target.closest(".task-check").setAttribute('src', 'assets/checkbox.svg')
 }
 
 function resetInputs() {
@@ -140,15 +145,24 @@ function checkTaskList() {
   }
 }
 
-function clearArray(){
-  taskArray = []
-}
 
 // --------------deleteing-----------//
   function deleteListItem(e){
   if (e.target.className === "delete-from-sidebar-button") {
       e.target.closest(".list-item").remove();
   }
+}
+
+function targetCardForDeletion(e) {
+  var card = e.target.closest('.card');
+  var index = findCardIndex(card);
+}
+
+function findCardIndex(card) {
+  var cardId = card.dataset.id;
+  return todoCards.findIndex(function(item) {
+    return item.id == cardId;
+  });
 }
 
 function deleteCard(e){
@@ -158,7 +172,6 @@ function deleteCard(e){
 }
 
 
-//-----------------------------------------------------
 function makeNewTask() {
     console.log('wow so cool')
 	var newTaskList = new Todolist(Date.now(), taskTitleInput.value, taskArray);
@@ -172,15 +185,4 @@ function makeNewTaskObject() {
   var listItem = document.querySelector('.list-item')
   var taskObject = { id: Date.now(), content: `${taskBodyInput.value}`, checked: false}
   taskArray.push(taskObject)
-
 }
-
-
-// function svgSwap() {
-// var deleteButton = document.querySelectorAll('.delete-from-sidebar-button')
-// for (var i = 0; i < deleteButton.length; i++){
-//   if (deleteButton[i].getAttribute('src') === 'assets/delete.svg') {
-//       deleteButton[i].setAttribute('src', 'assets/checkbox.svg')
-//     }
-//   }
-// }
