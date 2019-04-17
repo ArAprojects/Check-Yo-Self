@@ -1,4 +1,5 @@
 var toDoListArray = JSON.parse(localStorage.getItem('tasklist')) || [];
+console.log(toDoListArray)
 var taskArray = [];
 var cardArrayIndx = 0;
 var newItemButton = document.querySelector('.new-item-button')
@@ -28,17 +29,27 @@ newItemButton.addEventListener('click', resetInputs)
 clearAllButton.addEventListener('click', clearAll)
 cardArea.addEventListener('click', toggles)
 cardArea.addEventListener('click', toggleCheck)
+cardArea.addEventListener('click', toggleUrgentState)
 window.addEventListener('load', reload)
 
 
 function reload() {
-  if(localStorage.getItem('tasklist')) {
-    var getCardArray = localStorage.getItem('tasklist');
-    toDoListArray.forEach(function(el) {
-    makeCard(el);
-    });
+    var oldArrayData = toDoListArray
+    var newDataArray = oldArrayData.map(function(item){
+    item = new Todolist(item.id, item.title, item.tasks, item.urgent)
+    return item;
+    })
+    toDoListArray = newDataArray;
+    restoreCards(toDoListArray);
   }
-}
+
+  function restoreCards(toDoListArray) {
+    toDoListArray.forEach(function(el) {
+      makeCard(el);
+    });
+  };
+
+
 
 function getTasks(task) {
   if(task.length > 0) {
@@ -98,6 +109,14 @@ function listAreaClicks(e){
 function toggles(e){
   toggleUrgent(e)
   toggleColor(e)
+}
+
+function toggleUrgentState(e){
+  if (e.target.className === "urgent-button") {
+  var card = e.target.closest(".card");
+  var index = findCardIndex(card);
+  toDoListArray[index].urgent();
+  }
 }
 
 function toggleCheck(e){
@@ -172,16 +191,28 @@ function deleteListItem(e){
 
 function deleteCard(e){
   if (e.target.className === "delete-button") {
-    e.target.closest(".card").remove()
+  var card = e.target.closest(".card");
+  card.remove();
+  var index = findCardIndex(card);
+  toDoListArray[index].deleteFromLocalStorage(index);
   }
 }
+
+
+function findCardIndex(card){
+  var cardData = card.dataset.id;
+  return toDoListArray.findIndex(function(item) {
+  return item.id == cardData
+  })
+}
+
 
 function makeNewTask() {
 	var newTaskList = new Todolist(Date.now(), taskTitleInput.value, taskArray);
   makeCard(newTaskList);
 	toDoListArray.push(newTaskList);
-	newTaskList.saveToLocalStorage();
   taskArray = [];
+  newTaskList.saveToLocalStorage()
 }
 
 function makeNewTaskObject() {
